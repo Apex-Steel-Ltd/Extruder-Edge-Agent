@@ -10,6 +10,13 @@ It uses a highly resilient **"Store and Forward"** architecture. If the factory 
 - **Dynamic Configuration**: The agent queries ERPNext every 15 minutes to ask which machines are currently active, meaning you never have to hardcode machine IP addresses.
 - **Stateless Agent**: All complex business logic (session detection, 1-hour log intervals) is handled by the ERPNext backend. This agent acts purely as a "Dumb Forwarder".
 
+## ⚠️ CRITICAL: Network Topology Requirement
+
+For the offline buffering ("Store and Forward") to work correctly, the device running this agent **MUST be physically on the same local network switch as the Extruder machines**. 
+
+- **Correct Setup**: A small local PC or Raspberry Pi plugged directly into the factory LAN. If the factory's outside internet connection drops, the agent can still ping the machine (`192.168.x.x`), collect data, and buffer it locally.
+- **Incorrect Setup**: Installing this on a Cloud VPS (AWS, DigitalOcean) or a server that loses routing to the factory floor when the main internet goes down. If the agent cannot ping the machine during an outage, the data will be permanently lost because the machine itself does not store historical data.
+
 ## Installation
 
 1. Clone or copy this directory to your local server (e.g., Ubuntu VPS or Raspberry Pi).
