@@ -20,7 +20,14 @@ For the offline buffering ("Store and Forward") to work correctly, the device ru
 ## Installation
 
 1. Clone or copy this directory to your local server (e.g., Ubuntu VPS or Raspberry Pi).
-2. Install the required Python dependencies:
+2. Initialize and activate a Python virtual environment:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. Install the required Python dependencies:
 
 ```bash
 pip3 install -r requirements.txt
@@ -67,7 +74,7 @@ After=network.target
 [Service]
 User=frappe
 WorkingDirectory=/path/to/extruder_edge_agent
-ExecStart=/usr/bin/python3 /path/to/extruder_edge_agent/agent.py
+ExecStart=/path/to/extruder_edge_agent/venv/bin/python3 /path/to/extruder_edge_agent/agent.py
 Restart=always
 RestartSec=10
 
