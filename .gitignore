@@ -1,0 +1,12 @@
+# Configuration
+config.json
+
+# Local database & logs
+buffer.db
+buffer.db-journal
+agent.log
+
+# Python
+venv/
+__pycache__/
+*.pyc
