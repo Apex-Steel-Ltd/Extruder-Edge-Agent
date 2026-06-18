@@ -37,9 +37,8 @@ async def read_machine_data(machine_ip):
         return await original_create_session(params)
     client.uaclient.create_session = custom_create_session
 
-    await client.connect()
-
     try:
+        await client.connect()
         nodes_to_read = {
 
             # ── BPC Line throughput ───────────────────────────────────────
