@@ -30,6 +30,11 @@ active_machines = []
 machines_lock = threading.Lock()
 
 def load_config():
+    if not os.path.exists(CONFIG_PATH):
+        raise FileNotFoundError(
+            f"Configuration file not found at '{CONFIG_PATH}'. "
+            "Please copy 'config.json.example' to 'config.json' and fill in your ERPNext credentials."
+        )
     with open(CONFIG_PATH, "r") as f:
         return json.load(f)
 
