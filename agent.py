@@ -7,6 +7,8 @@ import asyncio
 import requests
 import threading
 from datetime import datetime
+from zoneinfo import ZoneInfo
+
 
 # Import the existing OPC UA script
 from inoex import read_machine_data
@@ -89,7 +91,7 @@ def fetch_loop():
     """Polls machines every 60 seconds and saves to SQLite."""
     while True:
         cycle_start = time.time()
-        now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        now_str = datetime.now(ZoneInfo("Africa/Nairobi")).strftime("%Y-%m-%d %H:%M:%S")
         
         with machines_lock:
             machines_to_poll = list(active_machines)
