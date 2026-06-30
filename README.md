@@ -35,7 +35,7 @@ pip3 install -r requirements.txt
 
 ## Configuration
 
-Edit the `config.json` file to point to your Cloud ERPNext instance:
+Create or edit the `config.json` file to point to your Cloud ERPNext instance:
 
 ```json
 {
